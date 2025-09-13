@@ -1,58 +1,154 @@
-export default function ContactSection() {
+import React, { useState, ChangeEvent, FormEvent } from 'react';
+
+const ContactSection = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    company: '',
+    subject: '',
+    message: '',
+  });
+
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    if (errors[e.target.name]) {
+      setErrors({ ...errors, [e.target.name]: '' });
+    }
+  };
+
+  const validateForm = () => {
+    const newErrors: { [key: string]: string } = {};
+    if (!formData.name.trim()) newErrors.name = 'Name is required';
+    if (!formData.email.trim()) newErrors.email = 'Email is required';
+    else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Email is invalid';
+    if (!formData.message.trim()) newErrors.message = 'Message is required';
+    return newErrors;
+  };
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const validationErrors = validateForm();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+    alert('Thank you for contacting Arinnovate Solutions. We will get back to you soon!');
+    setFormData({ name: '', email: '', phone: '', company: '', subject: '', message: '' });
+    setErrors({});
+  };
+
   return (
-    <section id="contact" className="py-20 bg-gradient-to-br from-blue-50 via-white to-purple-50">
-      <div className="max-w-4xl mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-center text-blue-800 mb-8 tracking-tight">
+    <section
+      id="contact"
+      className="py-20 bg-gray-900 text-white"
+    >
+      <div className="container mx-auto px-6 max-w-4xl">
+        <h2 className="text-5xl font-extrabold text-center mb-16 text-yellow-400 animate-fadeInDown">
           Contact Us
         </h2>
-        <div className="bg-white rounded-xl shadow-lg p-8 flex flex-col md:flex-row gap-8">
-          {/* Contact Info */}
-          <div className="flex-1">
-            <h3 className="text-xl font-bold text-blue-700 mb-4">Get in Touch</h3>
-            <p className="text-gray-700 mb-4">
-              Have a project in mind or want to learn more about our services? Fill out the form or reach us directly!
-            </p>
-            <ul className="mb-4 text-gray-600">
-              <li>
-                <span className="font-semibold text-blue-700">Email:</span> info@arinnovate.com
-              </li>
-              <li>
-                <span className="font-semibold text-blue-700">Phone:</span> +91 708989475790
-              </li>
-              <li>
-                <span className="font-semibold text-blue-700">Address:</span> 123 Innovation Drive, Tech City Indore, Madhya Pradesh, India [452001]
-              </li>
-            </ul>
+        <form onSubmit={handleSubmit} className="max-w-2xl mx-auto bg-gray-800 p-8 rounded-3xl shadow-2xl animate-fadeInUp">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <label htmlFor="name" className="block mb-2 font-semibold text-gray-200">Name *</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                placeholder="Your full name"
+                className={`w-full bg-gray-700 border ${errors.name ? 'border-red-500' : 'border-gray-600'} rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition`}
+              />
+              {errors.name && <p className="text-red-400 text-sm mt-1">{errors.name}</p>}
+            </div>
+            <div>
+              <label htmlFor="email" className="block mb-2 font-semibold text-gray-200">Email *</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="your.email@example.com"
+                className={`w-full bg-gray-700 border ${errors.email ? 'border-red-500' : 'border-gray-600'} rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition`}
+              />
+              {errors.email && <p className="text-red-400 text-sm mt-1">{errors.email}</p>}
+            </div>
           </div>
-          {/* Contact Form */}
-          <form className="flex-1 space-y-4">
-            <input
-              type="text"
-              placeholder="Your Name"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300"
-              required
-            />
-            <input
-              type="email"
-              placeholder="Your Email"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300"
-              required
-            />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <label htmlFor="phone" className="block mb-2 font-semibold text-gray-200">Phone</label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                placeholder="+1 (555) 123-4567"
+                className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
+              />
+            </div>
+            <div>
+              <label htmlFor="company" className="block mb-2 font-semibold text-gray-200">Company</label>
+              <input
+                type="text"
+                id="company"
+                name="company"
+                value={formData.company}
+                onChange={handleChange}
+                placeholder="Your company name"
+                className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
+              />
+            </div>
+          </div>
+          <div className="mb-6">
+            <label htmlFor="subject" className="block mb-2 font-semibold text-gray-200">Subject</label>
+            <select
+              id="subject"
+              name="subject"
+              value={formData.subject}
+              onChange={handleChange}
+              className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
+            >
+              <option value="">Select a subject</option>
+              <option value="general">General Inquiry</option>
+              <option value="technology">Technology Services</option>
+              <option value="digital-transformation">Digital Transformation</option>
+              <option value="consulting">Consulting</option>
+              <option value="assurance">Assurance</option>
+              <option value="strategy">Strategy and Transactions</option>
+              <option value="tax">Tax Services</option>
+              <option value="risk-management">Risk Management</option>
+            </select>
+          </div>
+          <div className="mb-8">
+            <label htmlFor="message" className="block mb-2 font-semibold text-gray-200">Message *</label>
             <textarea
-              placeholder="Your Message"
-              rows={4}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300"
-              required
-            />
+              id="message"
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              placeholder="Tell us about your project or inquiry..."
+              rows={6}
+              className={`w-full bg-gray-700 border ${errors.message ? 'border-red-500' : 'border-gray-600'} rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition resize-none`}
+            ></textarea>
+            {errors.message && <p className="text-red-400 text-sm mt-1">{errors.message}</p>}
+          </div>
+          <div className="text-center">
             <button
               type="submit"
-              className="w-full bg-blue-700 text-white font-semibold py-3 rounded-lg hover:bg-blue-800 transition"
+              className="bg-gradient-to-r from-yellow-500 to-orange-600 text-gray-900 font-bold px-10 py-4 rounded-full shadow-lg hover:from-yellow-600 hover:to-orange-700 transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
             >
               Send Message
             </button>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
     </section>
   );
-}
+};
+
+export default ContactSection;

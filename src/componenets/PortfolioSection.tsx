@@ -1,37 +1,39 @@
+import Image from 'next/image';
+
 const projects = [
   {
     title: "Enterprise ERP Platform",
-    image: "/portfolio1.jpg",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&h=300&fit=crop&crop=center",
     description: "A scalable ERP solution for a global manufacturing company, streamlining operations and analytics.",
     link: "#",
   },
   {
     title: "AI-Powered Analytics Dashboard",
-    image: "/portfolio2.jpg",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=300&fit=crop&crop=center",
     description: "Real-time data visualization and AI insights for a fintech startup.",
     link: "#",
   },
   {
-    title: "Healthcare CRM System",
-    image: "/portfolio3.jpg",
-    description: "Custom CRM for a healthcare provider, improving patient engagement and workflow.",
+    title: "Healthcare ERP System",
+    image: "https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=500&h=300&fit=crop&crop=center",
+    description: "Comprehensive ERP system for healthcare management, integrating patient records, billing, and inventory.",
     link: "#",
   },
   {
     title: "E-commerce Cloud Migration",
-    image: "/portfolio4.jpg",
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500&h=300&fit=crop&crop=center",
     description: "Seamless migration of a retail platform to the cloud, boosting performance and reliability.",
     link: "#",
   },
   {
     title: "Blockchain Supply Chain",
-    image: "/portfolio5.jpg",
+    image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=500&h=300&fit=crop&crop=center",
     description: "A secure, transparent supply chain solution using blockchain for a logistics company.",
     link: "#",
   },
   {
     title: "Mobile Banking App",
-    image: "/portfolio6.jpg",
+    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=500&h=300&fit=crop&crop=center",
     description: "A user-friendly, secure mobile banking app for a leading financial institution.",
     link: "#",
   },
@@ -39,7 +41,7 @@ const projects = [
 
 export default function PortfolioSection() {
   return (
-    <section id="portfolio" className="py-20 bg-gradient-to-br from-purple-50 via-white to-blue-50">
+    <section id="portfolio" className="py-20 bg-gradient-to-br from-purple-50 via-white to-blue-50 scroll-mt-18">
       <div className="max-w-7xl mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-extrabold text-center text-blue-800 mb-12 tracking-tight">
           Our Portfolio
@@ -51,9 +53,11 @@ export default function PortfolioSection() {
               className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition group"
             >
               <div className="overflow-hidden">
-                <img
+                <Image
                   src={project.image}
                   alt={project.title}
+                  width={500}
+                  height={300}
                   className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               </div>

@@ -1,29 +1,192 @@
+'use client';
+
+import Link from "next/link";
+import React, { useState } from "react";
 import Image from "next/image";
+import { useRouter, usePathname } from "next/navigation";
 
 export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleContactClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    // If on services page, scroll to contact form section
+    if (pathname.startsWith('/services')) {
+      const contactSection = document.getElementById('contact-section');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // Otherwise navigate to contact page
+      router.push('/contact');
+    }
+  };
+
   return (
-    <header className="fixed top-0 left-0 w-full bg-white shadow-md z-50">
-      <nav className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
-        {/* Company Logo */}
-        <div className="flex items-center">
-          <Image src="/logo1.png" alt="Company Logo" width={48} height={48} />
-          <span className="ml-2 text-xl font-bold text-blue-700">Arinnovate Solutions</span>
+    <header className="bg-gray-900 text-white fixed w-full z-50">
+      <div className="container mx-auto flex items-center justify-between py-3 sm:py-4 px-4 sm:px-6">
+        {/* Logo */}
+        <div className="flex items-center space-x-2">
+          <Image
+            src="/logo.png"
+            alt="Arinnovate Solutions Logo"
+            width={32}
+            height={32}
+            className="h-6 sm:h-8 w-auto"
+          />
+          <span className="font-bold text-lg sm:text-xl bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">Arinnovate Solutions</span>
         </div>
-        {/* Navigation Links */}
-        <ul className="hidden md:flex space-x-8 font-medium">
-          <li><a href="#home" className="hover:text-blue-600 transition">Home</a></li>
-          <li><a href="#services" className="hover:text-blue-600 transition">Services</a></li>
-          <li><a href="#about" className="hover:text-blue-600 transition">About</a></li>
-          <li><a href="#portfolio" className="hover:text-blue-600 transition">Portfolio</a></li>
-          <li><a href="#contact" className="hover:text-blue-600 transition">Contact</a></li>
-        </ul>
+
+        {/* Desktop Navigation */}
+        <nav className="hidden md:block">
+          <ul className="flex space-x-8 text-sm font-semibold">
+            <li>
+              <Link
+                href="/"
+                className="hover:text-yellow-400 transition"
+              >
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/insights"
+                className="hover:text-yellow-400 transition"
+              >
+                Insights
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/services"
+                className="hover:text-yellow-400 transition"
+              >
+                Services
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/industries"
+                className="hover:text-yellow-400 transition"
+              >
+                Industries
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/careers"
+                className="hover:text-yellow-400 transition"
+              >
+                Careers
+              </Link>
+            </li>
+            <li>
+              <a href="/contact" onClick={handleContactClick} className="hover:text-yellow-400 transition">
+                Contact Us
+              </a>
+            </li>
+            <li>
+              <Link href="/about" className="hover:text-yellow-400 transition">
+                About us
+              </Link>
+            </li>
+          </ul>
+        </nav>
+
         {/* Mobile Menu Button */}
-        <button className="md:hidden text-blue-700 focus:outline-none">
-          <svg width="28" height="28" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M4 7h20M4 14h20M4 21h20" />
+        <button
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="md:hidden hover:text-yellow-400 transition"
+          aria-label="Toggle Menu"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
+            />
           </svg>
         </button>
-      </nav>
+
+
+      </div>
+
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="md:hidden bg-gray-900 text-white px-4 sm:px-6 py-4">
+          <ul className="space-y-4 text-sm font-semibold">
+            <li>
+              <Link
+                href="/"
+                className="block hover:text-yellow-400 transition"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/insights"
+                className="block hover:text-yellow-400 transition"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Insights
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/services"
+                className="block hover:text-yellow-400 transition"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Services
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/industries"
+                className="block hover:text-yellow-400 transition"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Industries
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/careers"
+                className="block hover:text-yellow-400 transition"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Careers
+              </Link>
+            </li>
+            <li>
+              <a href="/contact" onClick={handleContactClick} className="block hover:text-yellow-400 transition">
+                Contact Us
+              </a>
+            </li>
+            <li>
+              <Link
+                href="/about"
+                className="block hover:text-yellow-400 transition"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                About us
+              </Link>
+            </li>
+          </ul>
+
+        </div>
+      )}
     </header>
   );
 }

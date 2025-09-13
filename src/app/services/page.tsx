@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import FooterSection from '../../componenets/FooterSection';
 
 const services = [
   {
@@ -105,123 +106,76 @@ const services = [
   },
 ];
 
-const ServicesSection = () => {
-  const displayedServices = services.slice(0, 3);
-
+export default function ServicesPage() {
   return (
-    <>
-      <style jsx>{`
-        @keyframes float {
-          0%, 100% {
-            transform: translateY(0px);
-          }
-          50% {
-            transform: translateY(-10px);
-          }
-        }
-        @keyframes glow {
-          0%, 100% {
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
-          }
-          50% {
-            box-shadow: 0 0 40px rgba(59, 130, 246, 0.8);
-          }
-        }
-        .animate-float {
-          animation: float 3s ease-in-out infinite;
-        }
-        .animate-glow {
-          animation: glow 2s ease-in-out infinite;
-        }
-        .service-card {
-          transition: all 0.5s ease;
-          position: relative;
-          overflow: hidden;
-        }
-        .service-card::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: -100%;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-          transition: left 0.5s;
-        }
-        .service-card:hover::before {
-          left: 100%;
-        }
-        .service-card:hover {
-          transform: scale(1.05) translateY(-15px) rotateY(5deg);
-          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-        .ai-bg {
-          background: #111827; /* gray-900 */
-          position: relative;
-        }
-        .ai-bg::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
-          animation: float 10s ease-in-out infinite;
-        }
-      `}</style>
-      <section id="services" className="py-12 sm:py-16 lg:py-20 ai-bg relative overflow-hidden">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-center mb-8 sm:mb-12 lg:mb-16 text-white animate-fadeInDown">
+    <div className="min-h-screen bg-gray-900 text-white">
+      {/* Header Section */}
+      <div className="relative bg-gradient-to-r from-gray-800 via-gray-900 to-black py-20 overflow-hidden">
+        <div className="absolute inset-0 bg-black opacity-50"></div>
+        <div className="relative container mx-auto px-6 text-center">
+          <h1 className="text-6xl font-extrabold mb-6 text-white animate-float">
             Our AI-Powered Services
-          </h2>
-          {/* Responsive Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12">
-            {displayedServices.map((service, index) => (
-              <div
-                key={service.title}
-                className="service-card bg-gray-800 p-8 rounded-3xl shadow-2xl hover:shadow-3xl flex flex-col justify-between border border-gray-700 animate-float"
-                style={{ animationDelay: `${index * 0.5}s` }}
-              >
-                <div>
-                  <div className="flex items-center mb-6">
-                    <div className="text-blue-400 mr-4 animate-glow">
-                      {service.icon}
-                    </div>
-                    <Image
-                      src={service.image}
-                      alt={service.title}
-                      width={600}
-                      height={300}
-                      className="w-20 h-20 object-cover rounded-full shadow-lg"
-                    />
-                  </div>
-                  <h3 className="text-3xl font-bold mb-4 text-white">{service.title}</h3>
-                  <p className="text-gray-200 text-lg leading-relaxed">{service.description}</p>
-                </div>
-                <div className="mt-8">
-                  <Link
-                    href={`/services/${service.title.toLowerCase().replace(/ /g, '-')}`}
-                    className="inline-block bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-4 rounded-full hover:from-blue-600 hover:to-purple-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:scale-110"
-                  >
-                    Explore with AI
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="text-center mt-12">
-            <Link
-              href="/services"
-              className="inline-block bg-gradient-to-r from-yellow-500 to-orange-600 text-white px-10 py-4 rounded-full hover:from-yellow-600 hover:to-orange-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:scale-110"
-            >
-              Explore All Services
+          </h1>
+          <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+            Discover cutting-edge solutions tailored to transform your business. From technology innovation to strategic consulting, we empower you with AI-driven services that drive growth and efficiency.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
+            <Link href="/" className="bg-red-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-red-400 transition duration-300 w-full sm:w-auto text-center">
+              Home
+            </Link>
+            <Link href="/contact" className="bg-yellow-500 text-black px-6 py-3 rounded-full font-semibold hover:bg-yellow-400 transition duration-300 animate-glow w-full sm:w-auto text-center">
+              Contact Us
+            </Link>
+            <Link href="/about" className="bg-blue-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-400 transition duration-300 w-full sm:w-auto text-center">
+              Learn More About Us
+            </Link>
+            <Link href="/industries" className="bg-green-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-green-400 transition duration-300 w-full sm:w-auto text-center">
+              Explore Industries
             </Link>
           </div>
         </div>
-      </section>
-    </>
-  );
-};
+        {/* Decorative elements */}
+        <div className="absolute top-10 left-10 w-20 h-20 bg-yellow-500 rounded-full opacity-20 animate-float"></div>
+        <div className="absolute bottom-10 right-10 w-16 h-16 bg-blue-500 rounded-full opacity-20 animate-float" style={{ animationDelay: '1s' }}></div>
+      </div>
 
-export default ServicesSection;
+      <div className="container mx-auto px-6 py-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+          {services.map((service, index) => (
+            <div
+              key={service.title}
+              className="service-card bg-gray-800 p-8 rounded-3xl shadow-2xl hover:shadow-3xl flex flex-col justify-between border border-gray-700 animate-float"
+              style={{ animationDelay: `${index * 0.5}s` }}
+            >
+              <div>
+                <div className="flex items-center mb-6">
+                  <div className="text-blue-400 mr-4 animate-glow">
+                    {service.icon}
+                  </div>
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    width={600}
+                    height={300}
+                    className="w-20 h-20 object-cover rounded-full shadow-lg"
+                  />
+                </div>
+                <h3 className="text-3xl font-bold mb-4 text-white">{service.title}</h3>
+                <p className="text-gray-200 text-lg leading-relaxed">{service.detailedDescription}</p>
+              </div>
+              <div className="mt-8">
+                <Link
+                  href={`/services/${service.title.toLowerCase().replace(/ /g, '-')}`}
+                  className="inline-block bg-gradient-to-r from-yellow-500 to-orange-600 text-white px-8 py-4 rounded-full hover:from-yellow-600 hover:to-orange-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:scale-110"
+                >
+                  Explore with AI
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <FooterSection />
+    </div>
+  );
+}
