@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 const industries = [
   {
@@ -97,9 +98,11 @@ const IndustriesSection = () => {
             <div key={industry.name} className="bg-gray-800 p-8 rounded-lg shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2">
               <div className="mb-4">{industry.icon}</div>
               <h3 className="text-2xl font-semibold mb-4">{industry.name}</h3>
-              <img
+              <Image
                 src={industry.imageUrl}
                 alt={`${industry.name} Animated 3D Image`}
+                width={400}
+                height={300}
                 className="w-full h-48 rounded-lg object-cover mb-4"
               />
               <p className="text-gray-300">{industry.description}</p>

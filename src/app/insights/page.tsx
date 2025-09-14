@@ -2,9 +2,8 @@ import React from 'react';
 import Header from '../../componenets/Header';
 import FooterSection from '../../componenets/FooterSection';
 import Link from 'next/link';
-import Image from 'next/image';
 import { Calendar, User, ArrowRight } from 'lucide-react';
-
+import Image from 'next/image';
 const insights = [
   {
     id: 1,
@@ -92,6 +91,8 @@ export default function InsightsPage() {
                     <Image
                       src={insight.image}
                       alt={insight.title}
+                      width={1920}
+                      height={1080}
                       className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                     />
                     <div className="absolute top-4 left-4">

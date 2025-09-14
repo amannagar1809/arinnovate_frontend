@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
+import { useParams } from 'next/navigation';
 const serviceDetails = {
   assurance: {
     title: 'Assurance',
@@ -47,14 +48,9 @@ const serviceDetails = {
   },
 };
 
-interface ServicePageProps {
-  params: {
-    serviceName: string;
-  };
-}
-
-export default function ServicePage({ params }: ServicePageProps) {
-  const { serviceName } = params;
+export default function ServicePage() {
+  const params = useParams();
+  const serviceName = params.serviceName as string;
   const service = serviceDetails[serviceName as keyof typeof serviceDetails];
 
   const [formData, setFormData] = useState({
@@ -80,7 +76,7 @@ export default function ServicePage({ params }: ServicePageProps) {
   return (
     <div className="container mx-auto px-6 py-10 max-w-4xl">
       <h1 className="text-4xl font-bold mb-6">{service.title}</h1>
-      <Image src={service.imageUrl} alt={`${service.title} image`} className="w-full rounded mb-6" />
+      <Image src={service.imageUrl} alt={`${service.title} image`} width={800} height={400} className="w-full rounded mb-6" />
       <p className="mb-6">{service.description}</p>
       <div className="mb-6 aspect-video">
         <iframe
