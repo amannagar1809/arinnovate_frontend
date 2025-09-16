@@ -27,7 +27,7 @@ export default function AboutPage() {
             <div>
               <h2 className="text-4xl font-bold mb-8 text-white">Our Story</h2>
               <p className="text-lg text-gray-300 leading-relaxed mb-6">
-                Founded in 2020, Arinnovate Solutions emerged from a vision to bridge the gap between cutting-edge technology and business needs. Our founders, a team of seasoned technology experts and business strategists, recognized the transformative potential of AI and digital technologies.
+                Founded in 2024, Arinnovate Solutions emerged from a vision to bridge the gap between cutting-edge technology and business needs. Our founders, a team of seasoned technology experts and business strategists, recognized the transformative potential of AI and digital technologies.
               </p>
               <p className="text-lg text-gray-300 leading-relaxed mb-6">
                 What started as a small consultancy has grown into a comprehensive technology partner, serving clients across various industries. We&apos;ve helped hundreds of businesses navigate digital transformation, implement AI solutions, and achieve sustainable growth.
@@ -93,19 +93,19 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               <div className="bg-gray-800 p-8 rounded-3xl shadow-2xl border border-gray-700 text-center">
                 <div className="w-24 h-24 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mx-auto mb-6 flex items-center justify-center">
-                  <span className="text-2xl font-bold text-white">JD</span>
+                  <span className="text-2xl font-bold text-white">AN</span>
                 </div>
-                <h3 className="text-xl font-bold mb-2 text-white">John Doe</h3>
+                <h3 className="text-xl font-bold mb-2 text-white">Aman Nagar</h3>
                 <p className="text-yellow-400 mb-4">CEO & Founder</p>
                 <p className="text-gray-300 text-sm leading-relaxed">
-                  Visionary leader with 15+ years in technology consulting and digital transformation.
+                  Visionary leader in technology consulting and digital transformation.
                 </p>
               </div>
               <div className="bg-gray-800 p-8 rounded-3xl shadow-2xl border border-gray-700 text-center">
                 <div className="w-24 h-24 bg-gradient-to-r from-green-500 to-blue-600 rounded-full mx-auto mb-6 flex items-center justify-center">
-                  <span className="text-2xl font-bold text-white">JS</span>
+                  <span className="text-2xl font-bold text-white">RN</span>
                 </div>
-                <h3 className="text-xl font-bold mb-2 text-white">Jane Smith</h3>
+                <h3 className="text-xl font-bold mb-2 text-white">Rohit Nagar</h3>
                 <p className="text-yellow-400 mb-4">CTO</p>
                 <p className="text-gray-300 text-sm leading-relaxed">
                   AI and machine learning expert driving our technological innovation initiatives.

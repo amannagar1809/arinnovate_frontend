@@ -62,7 +62,7 @@ const FooterSection = () => {
               </div>
               <div className="flex items-start space-x-3">
                 <MapPin className="h-4 w-4 text-yellow-400 mt-0.5" />
-                <span className="text-xs sm:text-sm">Innovation Drive, Indore, India</span>
+                <span className="text-xs sm:text-sm">Innovation Drive, vijay Nagar ,AB Road Indore, India</span>
               </div>
             </div>
           </div>

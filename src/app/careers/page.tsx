@@ -8,7 +8,7 @@ const jobOpenings = [
   {
     title: 'Senior AI Engineer',
     department: 'Engineering',
-    location: 'Bangalore, India',
+    location: 'Indore, India',
     type: 'Full-time',
     description: 'Design and implement cutting-edge AI solutions for our clients. Work with machine learning frameworks and cloud technologies.',
     requirements: ['5+ years experience in AI/ML', 'Python, TensorFlow/PyTorch', 'Cloud platforms (AWS/Azure/GCP)', 'Strong problem-solving skills'],
@@ -16,7 +16,7 @@ const jobOpenings = [
   {
     title: 'Data Scientist',
     department: 'Data & Analytics',
-    location: 'Bangalore, India',
+    location: 'Indore, India',
     type: 'Full-time',
     description: 'Analyze complex datasets to extract insights and build predictive models that drive business decisions.',
     requirements: ['3+ years in data science', 'R/Python, SQL', 'Statistical modeling', 'Data visualization tools'],
@@ -24,7 +24,7 @@ const jobOpenings = [
   {
     title: 'Full Stack Developer',
     department: 'Engineering',
-    location: 'Bangalore, India',
+    location: 'Indore, India',
     type: 'Full-time',
     description: 'Build scalable web applications using modern technologies. Work across the entire stack from frontend to backend.',
     requirements: ['4+ years web development', 'React, Node.js', 'Database design', 'API development'],
@@ -32,7 +32,7 @@ const jobOpenings = [
   {
     title: 'DevOps Engineer',
     department: 'Infrastructure',
-    location: 'Bangalore, India',
+    location: 'Indore, India',
     type: 'Full-time',
     description: 'Manage and optimize our cloud infrastructure, CI/CD pipelines, and ensure high availability of our services.',
     requirements: ['3+ years DevOps experience', 'Docker, Kubernetes', 'AWS/Azure', 'Infrastructure as Code'],
@@ -40,7 +40,7 @@ const jobOpenings = [
   {
     title: 'Product Manager',
     department: 'Product',
-    location: 'Bangalore, India',
+    location: 'Indore, India',
     type: 'Full-time',
     description: 'Drive product strategy and roadmap. Work closely with engineering teams to deliver innovative AI solutions.',
     requirements: ['4+ years product management', 'Technical background', 'Agile methodologies', 'Data-driven decision making'],
@@ -48,7 +48,7 @@ const jobOpenings = [
   {
     title: 'UX/UI Designer',
     department: 'Design',
-    location: 'Bangalore, India',
+    location: 'Indore, India',
     type: 'Full-time',
     description: 'Create intuitive and beautiful user experiences for our AI-powered applications and platforms.',
     requirements: ['3+ years UX/UI design', 'Figma, Adobe Creative Suite', 'User research', 'Prototyping tools'],
