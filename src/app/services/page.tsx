@@ -165,7 +165,7 @@ export default function ServicesPage() {
               </div>
               <div className="mt-8">
                 <Link
-                  href={`/services/${service.title.toLowerCase().replace(/ /g, '-')}`}
+                  href={`/explore/${service.title.toLowerCase().replace(/ /g, '-')}`}
                   className="inline-block bg-gradient-to-r from-yellow-500 to-orange-600 text-white px-8 py-4 rounded-full hover:from-yellow-600 hover:to-orange-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:scale-110"
                 >
                   Explore with AI

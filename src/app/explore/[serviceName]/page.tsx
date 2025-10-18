@@ -1,9 +1,10 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import Header from '../../../componenets/Header';
+import ContactSection from '../../../componenets/ContactSection';
 import FooterSection from '../../../componenets/FooterSection';
 
 const serviceDetails = {
@@ -53,8 +54,22 @@ const serviceDetails = {
     title: 'Risk Management',
     description: 'Comprehensive risk assessment and mitigation strategies.',
     detailedDescription: 'Our risk management services include enterprise risk management, compliance risk, operational risk, and financial risk assessments. We help organizations identify, assess, and mitigate risks to protect their assets and reputation.',
-    image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080&q=80',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080&q=80',
     videoUrl: 'https://www.youtube.com/embed/VIDEO_ID_RISK',
+  },
+  'cloud-services': {
+    title: 'Cloud Services',
+    description: 'Scalable cloud solutions for modern businesses.',
+    detailedDescription: 'We provide cloud migration, infrastructure management, and cloud-native development services. Our experts help businesses leverage AWS, Azure, and Google Cloud to achieve scalability, cost-efficiency, and innovation.',
+    image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080&q=80',
+    videoUrl: 'https://www.youtube.com/embed/VIDEO_ID_CLOUD',
+  },
+  'data-analytics': {
+    title: 'Data Analytics',
+    description: 'Transforming data into actionable insights.',
+    detailedDescription: 'Our data analytics services include big data processing, machine learning, predictive analytics, and business intelligence. We help organizations turn raw data into strategic advantages for better decision-making.',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080&q=80',
+    videoUrl: 'https://www.youtube.com/embed/VIDEO_ID_DATA',
   },
 };
 
@@ -62,12 +77,6 @@ export default function ExploreServicePage() {
   const params = useParams();
   const serviceName = params.serviceName as string;
   const service = serviceDetails[serviceName as keyof typeof serviceDetails];
-
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-  });
 
   if (!service) {
     return (
@@ -79,67 +88,25 @@ export default function ExploreServicePage() {
     );
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    alert(`Thank you for contacting us about ${service.title}, ${formData.name}!`);
-    setFormData({ name: '', email: '', message: '' });
-  };
-
   return (
     <>
       <Header />
-      <div className="container mx-auto px-6 py-10 max-w-4xl">
-        <h1 className="text-4xl font-bold mb-6">{service.title} - Explore with AI</h1>
-        <Image src={service.image} alt={`${service.title} image`} width={800} height={400} className="w-full rounded mb-6" />
-        <p className="mb-6 text-lg">{service.detailedDescription}</p>
-        <div className="mb-6 aspect-video">
-          <iframe
-            src={service.videoUrl}
-            title={`${service.title} video`}
-            frameBorder="0"
-            allowFullScreen
-            className="w-full h-full rounded"
-          ></iframe>
+      <div className="min-h-screen bg-gray-900 text-white">
+        <div className="container mx-auto px-6 py-10 pt-24 max-w-4xl">
+          <h1 className="text-4xl font-bold mb-6 text-white">{service.title} - Explore with AI</h1>
+          <Image src={service.image} alt={`${service.title} image`} width={800} height={400} className="w-full rounded mb-6" />
+          <p className="mb-6 text-lg text-gray-200">{service.detailedDescription}</p>
+          <div className="mb-6 aspect-video">
+            <iframe
+              src={service.videoUrl}
+              title={`${service.title} video`}
+              frameBorder="0"
+              allowFullScreen
+              className="w-full h-full rounded"
+            ></iframe>
+          </div>
         </div>
-        <h2 className="text-2xl font-semibold mb-4">Contact Us About {service.title}</h2>
-        <form onSubmit={handleSubmit} className="space-y-4 max-w-md">
-          <input
-            type="text"
-            name="name"
-            placeholder="Your Name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-            className="w-full p-2 border rounded"
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Your Email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-            className="w-full p-2 border rounded"
-          />
-          <textarea
-            name="message"
-            placeholder="Your Message"
-            value={formData.message}
-            onChange={handleChange}
-            rows={4}
-            className="w-full p-2 border rounded"
-          />
-          <button
-            type="submit"
-            className="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700 transition"
-          >
-            Send
-          </button>
-        </form>
+        <ContactSection />
       </div>
       <FooterSection />
     </>
