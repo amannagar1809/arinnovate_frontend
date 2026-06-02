@@ -1,4 +1,5 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
+import { submitContactForm } from '../lib/submitContactForm';
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +12,7 @@ const ContactSection = () => {
   });
 
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -28,13 +30,23 @@ const ContactSection = () => {
     return newErrors;
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const validationErrors = validateForm();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
+
+    setIsSubmitting(true);
+    const result = await submitContactForm(formData);
+    setIsSubmitting(false);
+
+    if (!result.success) {
+      alert(result.error || 'Failed to send message. Please try again.');
+      return;
+    }
+
     alert('Thank you for contacting Arinnovate Solutions. We will get back to you soon!');
     setFormData({ name: '', email: '', phone: '', company: '', subject: '', message: '' });
     setErrors({});
@@ -140,9 +152,10 @@ const ContactSection = () => {
           <div className="text-center">
             <button
               type="submit"
-              className="bg-gradient-to-r from-yellow-500 to-orange-600 text-gray-900 font-bold px-10 py-4 rounded-full shadow-lg hover:from-yellow-600 hover:to-orange-700 transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
+              disabled={isSubmitting}
+              className="bg-gradient-to-r from-yellow-500 to-orange-600 text-gray-900 font-bold px-10 py-4 rounded-full shadow-lg hover:from-yellow-600 hover:to-orange-700 transition-all duration-300 transform hover:scale-105 hover:shadow-xl disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none"
             >
-              Send Message
+              {isSubmitting ? 'Sending...' : 'Send Message'}
             </button>
           </div>
         </form>

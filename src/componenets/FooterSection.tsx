@@ -58,11 +58,11 @@ const FooterSection = () => {
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="h-4 w-4 text-yellow-400" />
-                <span className="text-xs sm:text-sm">+91 89894 75790</span>
+                <span className="text-xs sm:text-sm">+91 6269034011</span>
               </div>
               <div className="flex items-start space-x-3">
                 <MapPin className="h-4 w-4 text-yellow-400 mt-0.5" />
-                <span className="text-xs sm:text-sm">Innovation Drive, vijay Nagar ,AB Road Indore, India</span>
+                <span className="text-xs sm:text-sm">Innovation Drive, Vijay Nagar,AB Road Indore, India</span>
               </div>
             </div>
           </div>
@@ -88,7 +88,7 @@ const FooterSection = () => {
                 <p className="text-xs sm:text-sm mb-2">Follow us on social media</p>
                 <div className="flex space-x-4">
                   <a
-                    href="https://www.linkedin.com/company/arinnovate"
+                    href="https://www.linkedin.com/company/arinnovate-solutions/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-400 hover:text-yellow-400 transition duration-300"
